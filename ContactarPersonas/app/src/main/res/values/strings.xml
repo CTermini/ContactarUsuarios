@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ContactarPersonas</string>
+
+    <string name="nombre">Nombre</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="comentar">Dejar comentario</string>
+    <string name="campoVacio">No deje campos vacios</string>
+    <string name="ttlPrincipal">Principal</string>
+    <string name="ttlContacto">Contacto</string>
+    <string name="ttlMensaje">Formulario</string>
+</resources>

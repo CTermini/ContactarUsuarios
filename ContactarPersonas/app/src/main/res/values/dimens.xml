@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="image_margin_l">10dp</dimen>
+    <dimen name="image_margin_r">10dp</dimen>
+    <dimen name="image_margin_t">260dp</dimen>
+    <dimen name="image_margin_b">260dp</dimen>
+
+</resources>

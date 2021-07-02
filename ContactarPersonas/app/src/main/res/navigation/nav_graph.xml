@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.ContactarPersonas.ui.fragment.MainFragment"
+        android:label="@string/ttlPrincipal"
+        tools:layout="@layout/main_fragment">
+
+        <action
+            android:id="@+id/action_mainFragment_to_persona"
+            app:destination="@id/persona"
+            >
+            <argument
+                android:name="persona"
+                android:defaultValue="null" />
+        </action>
+        <argument
+            android:name="seleccion"
+            app:argType="com.example.ContactarPersonas.data.model.Data" />
+    </fragment>
+    <fragment
+        android:id="@+id/persona"
+        android:name="com.example.ContactarPersonas.ui.fragment.Persona"
+        android:label="@string/ttlContacto"
+        tools:layout="@layout/fragment_persona">
+        <argument
+            android:name="usuario"
+            app:argType="com.example.ContactarPersonas.data.model.Data" />
+        <action
+            android:id="@+id/action_persona_to_dejarComentario"
+            app:destination="@id/dejarComentario" />
+        <action
+            android:id="@+id/action_persona_self"
+            app:destination="@id/persona" />
+    </fragment>
+    <fragment
+        android:id="@+id/dejarComentario"
+        android:name="com.example.ContactarPersonas.ui.fragment.DejarComentario"
+        android:label="@string/ttlMensaje"
+        tools:layout="@layout/fragment_dejar_comentario">
+        <action
+            android:id="@+id/action_dejarComentario_to_persona"
+            app:destination="@id/persona" />
+    </fragment>
+</navigation>
