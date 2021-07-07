@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
             adapter.setOnPersonaClick(object : AdapterRv.onPersonaClickListener {
                 override fun onPersonaClick(data: Data) {
                     val puente = Bundle()
-                    puente.putParcelable("loco", data)
+                    puente.putParcelable("persona", data)
 
                     findNavController().navigate(R.id.action_mainFragment_to_persona, puente)
                 }

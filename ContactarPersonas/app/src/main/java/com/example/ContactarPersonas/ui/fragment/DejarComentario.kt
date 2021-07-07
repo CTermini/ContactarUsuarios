@@ -33,11 +33,11 @@ class DejarComentario : Fragment() {
         super.onActivityCreated(savedInstanceState)
         arguments.let {
             if (it != null) {
-                persona = it.getParcelable<Data>("loco")!!
+                persona = it.getParcelable<Data>("persona")!!
 
             }
         }
-        Log.i("TAG", "onActivityCreated: $persona")
+        Log.i("Seleccion", "onActivityCreated: $persona")
         with(binding) {
             button2.setOnClickListener {
 
@@ -48,12 +48,13 @@ class DejarComentario : Fragment() {
                     viewModel.onAgregarClicked(
                         Mensaje(
                             0, nombre, mensaje,
-                            arguments?.getInt("id").toString()
+//                            arguments?.getParcelable<Data>("id").toString()
+                        persona?.id.toString()
                         )
                     )
                     val bundle = Bundle()
-                    bundle.putParcelable("loco", persona)
-                    findNavController().navigate(R.id.action_persona_self, bundle)
+                    bundle.putParcelable("persona", persona)
+                    findNavController().navigate(R.id.action_dejarComentario_to_persona, bundle)
                 } else {
                     if (nombre.isEmpty()) {
                         tvNombreComentario.error = getText(R.string.campoVacio)
@@ -65,5 +66,6 @@ class DejarComentario : Fragment() {
             }
         }
     }
+
 
 }

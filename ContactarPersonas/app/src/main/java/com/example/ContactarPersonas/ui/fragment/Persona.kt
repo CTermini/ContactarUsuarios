@@ -35,7 +35,7 @@ class Persona : Fragment() {
         bindingMensaje = FragmentDejarComentarioBinding.inflate(inflater, container, false)
         arguments.let {
             if (it != null) {
-                persona = it.getParcelable<Data>("loco")!!
+                persona = it.getParcelable<Data>("persona")!!
             }
         }
         return binding.root
@@ -66,8 +66,8 @@ class Persona : Fragment() {
 
             })
             val bundle = Bundle()
-            bundle.putInt("id", persona.id)
-            bundle.putParcelable("loco", persona)
+         //   bundle.putInt("id", persona.id)
+            bundle.putParcelable("persona", persona)
 
             button.setOnClickListener {
 
