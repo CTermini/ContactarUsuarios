@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663226981002",
+    "project_id": "contacatarpersonas",
+    "storage_bucket": "contacatarpersonas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663226981002:android:08d4b650cddc3a9f13ab73",
+        "android_client_info": {
+          "package_name": "com.example.ContactarPersonas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663226981002-mtd4jkl0q9jflpiu9c0h9tgs9mafmsum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtjXPANZJJFWm2BMxLsX9wnkvmGuLcnQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663226981002-mtd4jkl0q9jflpiu9c0h9tgs9mafmsum.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

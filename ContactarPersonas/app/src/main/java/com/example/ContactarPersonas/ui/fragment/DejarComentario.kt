@@ -1,11 +1,13 @@
 package com.example.ContactarPersonas.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ContactarPersonas.R
@@ -54,7 +56,10 @@ class DejarComentario : Fragment() {
                     )
                     val bundle = Bundle()
                     bundle.putParcelable("persona", persona)
+                    ocultarTeclado()
                     findNavController().navigate(R.id.action_dejarComentario_to_persona, bundle)
+
+
                 } else {
                     if (nombre.isEmpty()) {
                         tvNombreComentario.error = getText(R.string.campoVacio)
@@ -67,5 +72,13 @@ class DejarComentario : Fragment() {
         }
     }
 
+    fun ocultarTeclado() {
+        val vieww = requireActivity().currentFocus
+        if (vieww != null) {
 
+            val input =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            input.hideSoftInputFromWindow(vieww.windowToken, 0)
+        }
+    }
 }

@@ -14,7 +14,9 @@
         android:theme="@style/Theme.ContactarPersonas">
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+           >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

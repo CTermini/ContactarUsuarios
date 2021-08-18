@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/mainFragment"
+    >
 
     <fragment
         android:id="@+id/mainFragment"
@@ -42,6 +43,8 @@
         tools:layout="@layout/fragment_dejar_comentario">
         <action
             android:id="@+id/action_dejarComentario_to_persona"
-            app:destination="@id/persona" />
+            app:destination="@id/persona"
+
+            />
     </fragment>
 </navigation>
