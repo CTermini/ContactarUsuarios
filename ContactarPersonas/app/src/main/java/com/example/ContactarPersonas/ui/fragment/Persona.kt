@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.ContactarPersonas.R
 import com.example.ContactarPersonas.adapter.AdapterPersonas
+import com.example.ContactarPersonas.core.Binding
+import com.example.ContactarPersonas.core.ViewModel
 import com.example.ContactarPersonas.data.model.Data
 import com.example.ContactarPersonas.data.model.Mensaje
 import com.example.ContactarPersonas.databinding.FragmentDejarComentarioBinding
@@ -30,13 +32,14 @@ class Persona : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        binding = FragmentPersonaBinding.inflate(inflater, container, false)
-        bindingMensaje = FragmentDejarComentarioBinding.inflate(inflater, container, false)
-        arguments.let {
-            if (it != null) {
-                persona = it.getParcelable<Data>("persona")!!
-            }
+        viewModel = ViewModel.getViewModel(this)
+            binding = Binding.getPersonaBinding(inflater, container)
+        bindingMensaje = Binding.getComentarioBinding(inflater, container)
+
+        arguments?.let {
+            persona = it.getParcelable("persona")!!
+        } ?: run {
+
         }
         return binding.root
 
@@ -44,7 +47,6 @@ class Persona : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
 
         Log.i("persona", "onActivityCreated:$persona ")
         with(binding) {
@@ -56,7 +58,7 @@ class Persona : Fragment() {
             tvMensaje.text = persona.first_name.plus(" ").plus(persona.last_name)
             tvCorreo.text = persona.email
 
-            val adapter = AdapterPersonas(lista = mutableListOf<Mensaje>())
+            val adapter = AdapterPersonas(lista = mutableListOf())
             rvPersona.layoutManager = LinearLayoutManager(requireContext())
             rvPersona.adapter = adapter
 
@@ -66,7 +68,6 @@ class Persona : Fragment() {
 
             })
             val bundle = Bundle()
-         //   bundle.putInt("id", persona.id)
             bundle.putParcelable("persona", persona)
 
             button.setOnClickListener {

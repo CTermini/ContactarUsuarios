@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ContactarPersonas.R
 import com.example.ContactarPersonas.adapter.AdapterRv
+import com.example.ContactarPersonas.core.Binding
+import com.example.ContactarPersonas.core.ViewModel
 import com.example.ContactarPersonas.data.model.Data
 import com.example.ContactarPersonas.databinding.MainFragmentBinding
 import com.example.ContactarPersonas.ui.main.MainViewModel
@@ -25,21 +29,21 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     lateinit var binding: MainFragmentBinding
-    private val adapter=AdapterRv()
+    private val adapter = AdapterRv()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = MainFragmentBinding.inflate(inflater, container, false)
+        binding = Binding.getMainBinding(inflater,container)
 
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModel.getViewModel(this)
 
         with(binding) {
             cargarRv()
@@ -51,23 +55,22 @@ class MainFragment : Fragment() {
 
             viewModel.listaUsr.observe(viewLifecycleOwner, Observer {
                 adapter.setPersona(it)
+
             })
 
             adapter.setOnPersonaClick(object : AdapterRv.onPersonaClickListener {
                 override fun onPersonaClick(data: Data) {
                     val puente = Bundle()
                     puente.putParcelable("persona", data)
-
                     findNavController().navigate(R.id.action_mainFragment_to_persona, puente)
                 }
             })
-        }
+                   }
 
     }
 
     fun cargarRv() {
         with(binding) {
-
             rvLista.layoutManager = LinearLayoutManager(requireContext())
             rvLista.adapter = adapter
 
@@ -75,3 +78,4 @@ class MainFragment : Fragment() {
     }
 
 }
+

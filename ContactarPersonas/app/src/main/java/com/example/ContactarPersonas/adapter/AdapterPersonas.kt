@@ -2,13 +2,11 @@ package com.example.ContactarPersonas.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ContactarPersonas.R
 import com.example.ContactarPersonas.data.model.Mensaje
 
-import com.example.ContactarPersonas.databinding.RecyclerViewItem1Binding
-
+//rv de mensajes
 class AdapterPersonas (private var lista: List<Mensaje>): RecyclerView.Adapter<UsersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
@@ -25,7 +23,6 @@ class AdapterPersonas (private var lista: List<Mensaje>): RecyclerView.Adapter<U
 
     fun setMensaje(mensajes: List<Mensaje>) {
         this.lista = mensajes
-
         notifyDataSetChanged()
     }
 }

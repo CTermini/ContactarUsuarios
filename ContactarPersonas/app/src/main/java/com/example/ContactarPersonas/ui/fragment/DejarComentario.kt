@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ContactarPersonas.R
+import com.example.ContactarPersonas.core.Binding
+import com.example.ContactarPersonas.core.ViewModel
 import com.example.ContactarPersonas.data.model.Data
 import com.example.ContactarPersonas.data.model.Mensaje
 import com.example.ContactarPersonas.databinding.FragmentDejarComentarioBinding
@@ -20,12 +23,13 @@ class DejarComentario : Fragment() {
     private lateinit var viewModel: MainViewModel
     lateinit var binding: FragmentDejarComentarioBinding
     private var persona: Data? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        binding = FragmentDejarComentarioBinding.inflate(inflater, container, false)
+        viewModel = ViewModel.getViewModel(this)
+        binding = Binding.getComentarioBinding(inflater,container)
 
         return binding.root
 
@@ -33,12 +37,14 @@ class DejarComentario : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        arguments.let {
-            if (it != null) {
-                persona = it.getParcelable<Data>("persona")!!
+        arguments?.let {
 
-            }
+                persona = it.getParcelable("persona")!!
+
+        }?: run {
+            Toast.makeText(requireContext(), "argumentos nulos", Toast.LENGTH_SHORT).show()
         }
+
         Log.i("Seleccion", "onActivityCreated: $persona")
         with(binding) {
             button2.setOnClickListener {
@@ -50,15 +56,13 @@ class DejarComentario : Fragment() {
                     viewModel.onAgregarClicked(
                         Mensaje(
                             0, nombre, mensaje,
-//                            arguments?.getParcelable<Data>("id").toString()
-                        persona?.id.toString()
+                            persona?.id.toString()
                         )
                     )
                     val bundle = Bundle()
                     bundle.putParcelable("persona", persona)
                     ocultarTeclado()
                     findNavController().navigate(R.id.action_dejarComentario_to_persona, bundle)
-
 
                 } else {
                     if (nombre.isEmpty()) {
@@ -75,7 +79,6 @@ class DejarComentario : Fragment() {
     fun ocultarTeclado() {
         val vieww = requireActivity().currentFocus
         if (vieww != null) {
-
             val input =
                 requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             input.hideSoftInputFromWindow(vieww.windowToken, 0)

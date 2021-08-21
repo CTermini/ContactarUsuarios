@@ -4,11 +4,11 @@ package com.example.ContactarPersonas.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.ContactarPersonas.R
+import com.example.ContactarPersonas.core.Binding
 import com.example.ContactarPersonas.data.model.Data
 import com.example.ContactarPersonas.databinding.RecyclerViewItemBinding
 
@@ -19,8 +19,7 @@ class AdapterRv : RecyclerView.Adapter<AdapterRv.CuastomViewHolder>() {
 
     class CuastomViewHolder(view: View, var listener: onPersonaClickListener) :
         RecyclerView.ViewHolder(view) {
-
-        val binding = RecyclerViewItemBinding.bind(view)
+        val binding = Binding.getRvBinding(view)
 
         fun binData(item: Data) {
             with(binding) {
@@ -29,10 +28,11 @@ class AdapterRv : RecyclerView.Adapter<AdapterRv.CuastomViewHolder>() {
                 Glide.with(itemView).load(item.avatar).apply(
                     RequestOptions().override(500, 500)
                 ).into(binding.imageView2)
-                binding.textView.text = item.email
 
+                binding.textView.text = item.email
                 binding.cvTarjeta.setOnClickListener {
                     listener.onPersonaClick(item)
+
                 }
             }
         }
@@ -50,6 +50,7 @@ class AdapterRv : RecyclerView.Adapter<AdapterRv.CuastomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CuastomViewHolder, position: Int) {
+
         holder.binData(lista[position])
     }
 

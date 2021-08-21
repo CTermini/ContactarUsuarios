@@ -13,6 +13,7 @@ import com.example.ContactarPersonas.data.network.service.PersonasAPI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Query
 
 class MainViewModel : ViewModel() {
 
@@ -31,7 +32,8 @@ class MainViewModel : ViewModel() {
 
     fun obtenerUsuarios() {
         isLoadingProgressBar.postValue(true)
-        val call = service.getPersona()
+
+        val call = service.getPersona(2) // buscar como reemplazarlo
         call.enqueue(object : Callback<Persona> {
 
             override fun onFailure(call: Call<Persona>, t: Throwable) {
@@ -45,13 +47,9 @@ class MainViewModel : ViewModel() {
                         response.body().let {
                             listaUsr.postValue(it?.data)
                             isLoadingProgressBar.postValue(false)
-
                         }
-                    } else {
-                        Log.i("Conecto", "onResponse:  VACIO ${response.message()}")
                     }
                 }
-
             }
         })
 

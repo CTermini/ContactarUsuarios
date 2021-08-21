@@ -11,12 +11,8 @@ class UsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun binData(item: Mensaje) {
         with(binding) {
-
             tvNombre.text = (item.nombre)
             tvMensaje.text = (item.mensaje)
-
-
-
         }
     }
 
