@@ -45,6 +45,13 @@
             android:id="@+id/action_dejarComentario_to_persona"
             app:destination="@id/persona"
 
-            />
+            app:launchSingleTop="false"
+            app:popUpTo="@id/persona"
+            app:popUpToInclusive="true" />
     </fragment>
+    <action
+        android:id="@+id/action_global_mainFragment"
+        app:destination="@id/mainFragment"
+        app:enterAnim="@anim/nav_default_enter_anim" />
+
 </navigation>

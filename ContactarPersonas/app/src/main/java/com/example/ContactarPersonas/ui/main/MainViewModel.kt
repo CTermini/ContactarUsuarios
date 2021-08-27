@@ -1,23 +1,22 @@
 package com.example.ContactarPersonas.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ContactarPersonas.ui.AplicationM
 import com.example.ContactarPersonas.core.RetrofitHelper
 import com.example.ContactarPersonas.data.model.Data
 import com.example.ContactarPersonas.data.model.Mensaje
 import com.example.ContactarPersonas.data.model.Persona
 import com.example.ContactarPersonas.data.network.service.PersonasAPI
+import com.example.ContactarPersonas.ui.AplicationM
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Query
+
 
 class MainViewModel : ViewModel() {
 
-    private val service: PersonasAPI = RetrofitHelper.getRetrofit().create(PersonasAPI::class.java)
+    private val service: PersonasAPI = RetrofitHelper.getRetrofit("https://reqres.in/api/")!!
 
     val listaUsr = MutableLiveData<List<Data>>()
 
@@ -45,7 +44,7 @@ class MainViewModel : ViewModel() {
                 if (call.isExecuted) {
                     if (response.body() != null) {
                         response.body().let {
-                            listaUsr.postValue(it?.data)
+                            listaUsr.postValue(it?.data)?: emptyList()
                             isLoadingProgressBar.postValue(false)
                         }
                     }

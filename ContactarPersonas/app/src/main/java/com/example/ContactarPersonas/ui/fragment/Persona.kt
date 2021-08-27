@@ -24,19 +24,16 @@ import com.example.ContactarPersonas.ui.main.MainViewModel
 
 class Persona : Fragment() {
     lateinit var binding: FragmentPersonaBinding
-    lateinit var bindingMensaje: FragmentDejarComentarioBinding
     private lateinit var persona: Data
     private lateinit var viewModel: MainViewModel
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater,container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModel.getViewModel(this)
-            binding = Binding.getPersonaBinding(inflater, container)
-        bindingMensaje = Binding.getComentarioBinding(inflater, container)
-
-        arguments?.let {
+        binding = Binding.getPersonaBinding(inflater, container)
+          arguments?.let {
             persona = it.getParcelable("persona")!!
         } ?: run {
 
@@ -79,6 +76,7 @@ class Persona : Fragment() {
         }
 
     }
+
 
 }
 

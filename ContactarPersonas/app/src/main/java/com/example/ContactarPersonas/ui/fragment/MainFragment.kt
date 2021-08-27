@@ -1,17 +1,14 @@
 package com.example.ContactarPersonas.ui.fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.ContactarPersonas.R
 import com.example.ContactarPersonas.adapter.AdapterRv
 import com.example.ContactarPersonas.core.Binding
@@ -36,7 +33,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = Binding.getMainBinding(inflater,container)
+        binding = Binding.getMainBinding(inflater, container)
 
         return binding.root
     }
@@ -65,7 +62,7 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.action_mainFragment_to_persona, puente)
                 }
             })
-                   }
+        }
 
     }
 
@@ -78,4 +75,5 @@ class MainFragment : Fragment() {
     }
 
 }
+
 
